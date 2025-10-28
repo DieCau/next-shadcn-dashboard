@@ -1,6 +1,8 @@
 'use client';
 
 import { Button } from "@/components/ui/button"
+import { Spinner } from "@/components/ui/spinner";
+import { CircleFadingArrowUpIcon, GitBranch } from "lucide-react";
 
 const page = () => {
   return (
@@ -12,8 +14,18 @@ const page = () => {
       <Button variant='link'>link</Button>
       <Button variant='secondary'>secondary</Button>
       <Button disabled>disabled</Button>
-      <Button variant='success' onClick={()=> console.log('Hola!')}>click Me</Button>
+      <Button variant='success' onClick={() => console.log('Hola!')}>click Me</Button>
       <Button capitalize={false}>capitalize false</Button>
+      <Button variant="outline" size="icon">
+        <CircleFadingArrowUpIcon />
+      </Button>
+      <Button variant="success" size="sm">
+        <GitBranch /> Rama Nueva
+      </Button> 
+      <Button size='sm' variant='outline' capitalize={ false }>
+        <Spinner />
+        Espere por favor...
+      </Button>
     </div>
   )
 }
