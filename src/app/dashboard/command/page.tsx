@@ -19,15 +19,27 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/components/ui/command"
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 
 export default function Page() {
 
   const [open, setOpen] = useState(false)
+   useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "j" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault()
+        setOpen((open) => !open)
+      }
+    }
+
+    document.addEventListener("keydown", onKeyDown)
+    return () => document.removeEventListener("keydown", onKeyDown)
+  }, [])
 
   return (
     <div>
-      <CommandDialog className="rounded-lg border shadow-md md:min-w-[450px]">
+      <CommandDialog open={open} onOpenChange={setOpen} >
         <CommandInput placeholder="Escriba un comando o busque..." />
         <CommandList>
           <CommandEmpty>No se encontraron resultados.</CommandEmpty>
@@ -65,6 +77,19 @@ export default function Page() {
           </CommandGroup>
         </CommandList>
       </CommandDialog>
+
+      <div className="mt-10 h-[200px] flex justify-center items-center">
+        <p className="text-muted-foreground text-sm">
+          Presione{" "}
+          <kbd className="bg-muted text-muted-foreground pointer-events-none inline-flex h-5 items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100 select-none">
+            <span className="text-xs">⌘</span>J
+          </kbd>{'  '}
+          or{'  '}
+          <kbd className="bg-muted text-muted-foreground pointer-events-none inline-flex h-5 items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100 select-none">
+            <span className="text-xs">CTRL</span> + J
+          </kbd>
+        </p>
+      </div>
     </div>
   );
 }
