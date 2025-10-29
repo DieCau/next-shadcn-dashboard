@@ -5,7 +5,7 @@ const links = [
   { name: "accordion", href: "accordion" },
   { name: "alert", href: "alert" },
   { name: "button", href: "button" },
-  { name: "alert-dialog", href: "alert-dialog" },
+  { name: "alert dialog", href: "alert-dialog" },
   { name: "dialog", href: "dialog" },
   { name: "badge", href: "badge" },
   { name: "calendar", href: "calendar" },
@@ -15,6 +15,7 @@ const links = [
   { name: "checkbox", href: "checkbox" },
   { name: "command", href: "command" },
   { name: "combobox", href: "combobox" },
+  { name: "context menu", href: "context-menu" },
 
 ].sort((a, b) => a.name.localeCompare(b.name));
 
